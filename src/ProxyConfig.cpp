@@ -1,0 +1,3 @@
+struct ProxyConfig {
+  int port;
+};

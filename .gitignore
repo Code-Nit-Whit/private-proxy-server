@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+#CMake
+CMakeLists.txt
+build
+
+#VsCode Configs
+.vscode
+
+#Config Files
+proxy.conf
