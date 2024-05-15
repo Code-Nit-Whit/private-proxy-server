@@ -34,9 +34,12 @@
 #CMake
 CMakeLists.txt
 build
+build/*
+Makefile
 
 #VsCode Configs
 .vscode
+.vscode/*
 
 #Config Files
 proxy.conf

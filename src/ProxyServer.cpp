@@ -8,15 +8,16 @@
 #include <string>
 #include <thread>
 #include <sstream> 
-#include "ProxyConfig.hpp"
+#include "../include/ProxyConfig.hpp"
+#include "../include/ProxyServer.hpp"
 
 class ProxyServer
 {
 public:
-  ProxyServer(const ProxyConfig &config) : config_(config) {}
+ ProxyServer(const ProxyConfig& config) : config_(config) {}
 
-  void start()
-  {
+ void start()
+ {
     // Create I/O service object
     boost::asio::io_service io_service;
 
@@ -33,16 +34,16 @@ public:
 
       // Handle connection in a separate thread (optional)
       std::thread([this, &socket]()
-                  { handleConnection(socket); })
+                 { handleConnection(socket); })
           .detach();
     }
-  }
+ }
 
 private:
-  ProxyConfig config_;
+ ProxyConfig config_;
 
-  void handleConnection(boost::asio::ip::tcp::socket &clientSocket)
-  {
+ void handleConnection(boost::asio::ip::tcp::socket &clientSocket)
+ {
     try
     {
       // Read the request from the client
@@ -59,10 +60,10 @@ private:
     {
       std::cerr << "Exception in handleConnection: " << e.what() << std::endl;
     }
-  }
+ }
 
-  std::string forwardRequest(const std::string &request)
-  {
+ std::string forwardRequest(const std::string &request)
+ {
     try
     {
       // Basic parsing to extract the destination server's hostname and port
@@ -125,5 +126,6 @@ private:
       std::cerr << "Exception in forwardRequest: " << e.what() << std::endl;
       return "";
     }
-  }
+ }
 };
+

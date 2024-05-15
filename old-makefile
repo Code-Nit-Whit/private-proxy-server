@@ -1,0 +1,35 @@
+# Compiler options
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall
+
+# Executable name
+TARGET = proxy_server
+
+# Directories
+SRCDIR = src
+OBJDIR = obj
+
+# Source files
+SRCS = $(wildcard $(SRCDIR)/*.cpp)
+OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
+
+# Dependency files
+DEPS = $(OBJS:.o=.d)
+
+# Main target
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Compile source files
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
+
+# Include dependency files
+-include $(OBJS:.o=.d)
+
+# Clean rule
+clean:
+	rm -rf $(OBJDIR) $(TARGET)
+
+.PHONY: clean

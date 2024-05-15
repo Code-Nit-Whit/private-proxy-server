@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "ProxyServer.hpp" 
-#include "ProxyConfig.hpp"
+#include "../include/ProxyServer.hpp" 
+#include "../include/ProxyConfig.hpp"
 
 bool loadConfig(const std::string& filename, ProxyConfig& config) {
   std::ifstream configFile(filename);

@@ -6,4 +6,4 @@ struct ProxyConfig {
     int port;
 };
 
-#endif // PROXYCONFIG_HPP
+#endif // PROXYCONFIG_HPP>
